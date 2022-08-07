@@ -37,7 +37,7 @@ if(number % 2 == 0) {
     Console.Write($"Число {number} нечетное!");
 }
 */
-
+/*
 //Четвертая задача
 Console.Write("Введите число: ");
 int number = Math.Abs(int.Parse(Console.ReadLine()));
@@ -49,4 +49,22 @@ while(i <= number) {
     i += 2;
 }
 
+Console.Write(txt);
+*/
+
+
+Console.Write("Введите порядковый номер дня недели: ");
+int number = Math.Abs(int.Parse(Console.ReadLine()));
+string txt = "";
+
+switch(number) {
+    case 1: txt = "Понедельник";    break;
+    case 2: txt = "Вторник";        break;
+    case 3: txt = "Среда";          break;
+    case 4: txt = "Черверг";        break;
+    case 5: txt = "Пятница";        break;
+    case 6: txt = "Суббота";        break;
+    case 7: txt = "Воскресенье";    break;
+    default: txt = "Не корректное число!";  break;
+}
 Console.Write(txt);
