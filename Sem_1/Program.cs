@@ -8,7 +8,7 @@
 //else
 //    Console.Write("Второе число больше первого");
 
-
+/*
 // Вторая задача
 Console.Write("Введите первое число: ");
 int Number1 = int.Parse(Console.ReadLine());
@@ -25,3 +25,14 @@ if(Number3 > max) {
     max = Number3;
 }
 Console.Write($"Максимальное число из введенных: {max}");
+*/
+
+//Третья задача
+Console.Write("Введите число: ");
+int number = int.Parse(Console.ReadLine());
+
+if(number % 2 == 0) {
+    Console.Write($"Число {number} четное!");
+} else {
+    Console.Write($"Число {number} нечетное!");
+}
