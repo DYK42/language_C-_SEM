@@ -20,11 +20,11 @@ Console.Write($"Вторая цифра числа {number}: {secondNumber}");
 Задача 13: 
 Напишите программу, которая выводит третью цифру заданного числа или сообщает, 
 что третьей цифры нет.
-*/
+
 
 Console.Write("Введите число: ");
 string number = Console.ReadLine();
-/*
+
 int length = number.Length;
 
 if(length < 3) {
@@ -32,7 +32,7 @@ if(length < 3) {
 } else {
     Console.Write($"Третья цифра числа {number}: {number[2]}");
 }
-*/
+
 int num = int.Parse(number);
 
 if(num < 100) {
@@ -45,24 +45,16 @@ if(num < 100) {
     //Console.Write($"Цифр в числе {num}: {len}");
     Console.Write($"Третья цифра числа {num}: {num3}");
 }
+*/
+
+
 /*
 Задача 15: 
 Напишите программу, которая принимает на вход цифру, обозначающую день недели, 
 и проверяет, является ли этот день выходным.
-
+*/
 
 Console.Write("Введите цифру дня недели: ");
 int number = int.Parse(Console.ReadLine());
-string answer = "";
-switch(number) {
-    case 1:     answer = "Нет";    break;
-    case 2:     answer = "Нет";    break;
-    case 3:     answer = "Нет";    break;
-    case 4:     answer = "Нет";    break;
-    case 5:     answer = "Нет";    break;
-    case 6:     answer = "Да";     break;
-    case 7:     answer = "Да";     break;
-    default:    answer = "Не корректное число!"; break;
-}
-Console.Write(answer);
-*/
+if(number > 5 && number < 8) Console.Write("Да");
+else Console.Write("Нет");
