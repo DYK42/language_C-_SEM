@@ -2,19 +2,19 @@
 Задача 10: 
 Напишите программу, которая принимает на вход трёхзначное число и 
 на выходе показывает вторую цифру этого числа.
-
+*/
 
 Console.Write("Введите трехзначное число: ");
 int number = int.Parse(Console.ReadLine());
 
-if(number / 100 < 1 || number / 100 >= 10) {
+if(number < 100 || number > 999) {
     Console.WriteLine("Не корректное число!");
     return;
 }
 
 int secondNumber = (number % 100) / 10;
 Console.Write($"Вторая цифра числа {number}: {secondNumber}");
-*/
+
 
 /*
 Задача 13: 
@@ -37,7 +37,7 @@ if(length < 3) {
 Задача 15: 
 Напишите программу, которая принимает на вход цифру, обозначающую день недели, 
 и проверяет, является ли этот день выходным.
-*/
+
 
 Console.Write("Введите цифру дня недели: ");
 int number = int.Parse(Console.ReadLine());
@@ -53,3 +53,4 @@ switch(number) {
     default:    answer = "Не корректное число!"; break;
 }
 Console.Write(answer);
+*/
