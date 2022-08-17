@@ -29,7 +29,6 @@ Console.Write($"Число {num1} в степени {num2} равно: {GetPower
 452 -> 11
 82 -> 10
 9012 -> 12
-*/
 
 int GetSumNumber(int num)
 {
@@ -47,3 +46,35 @@ Console.Write("Введите число число: ");
 int number = int.Parse(Console.ReadLine());
 
 Console.Write($"Сумма чисел числа {number} равна: {GetSumNumber(number)}");
+*/
+
+/*
+Задача 29:
+Напишите программу, которая задаёт массив из N элементов, заполненных случайными числами из [a, b) 
+и выводит их на экран.
+5, 0, 20 -> [1, 2, 5, 7, 19]
+3, 1, 35 -> [6, 1, 33]
+*/
+
+void GetArray(ref int []arr, int numbers, int start, int end)
+{
+    Array.Resize<int>(ref arr, numbers);
+
+    for (int i = 0; i < arr.Length; i++)
+    {
+        arr[i] = new Random().Next(start, end);    
+    }
+}
+
+Console.Write("Введите размер массива: ");
+int sizeArray = int.Parse(Console.ReadLine());
+Console.Write("Введите число начала диапазона случайных чисел: ");
+int numStartRandom = int.Parse(Console.ReadLine());
+Console.Write("Введите число окончания диапазона случайных чисел: ");
+int numEndRandom = int.Parse(Console.ReadLine());
+
+int[] array = new int[1];
+
+GetArray(ref array, sizeArray, numStartRandom, numEndRandom);
+
+Console.Write($"[{string.Join(", ", array)}]");
