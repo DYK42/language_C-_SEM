@@ -54,7 +54,6 @@ Console.Write($"Сумма чисел числа {number} равна: {GetSumNum
 и выводит их на экран.
 5, 0, 20 -> [1, 2, 5, 7, 19]
 3, 1, 35 -> [6, 1, 33]
-*/
 
 void GetArray(ref int []arr, int numbers, int start, int end)
 {
@@ -78,3 +77,30 @@ int[] array = new int[1];
 GetArray(ref array, sizeArray, numStartRandom, numEndRandom);
 
 Console.Write($"[{string.Join(", ", array)}]");
+*/
+
+/*
+Задача “со звездочкой”: (необязательное) 
+Напишите функцию, которая принимает одно число - высоту елочки и рисует ее в консоли звездочками.
+*/
+
+Console.Clear();
+Console.Write("Введите высоту елочки: ");
+int size = int.Parse(Console.ReadLine());
+int x = size;
+int y = 1;
+int numbers = 1;
+
+for (int i = 0; i < size; i++)
+{
+    int x1 = x;
+    for (int j = 0; j < numbers; j++)
+    {
+        Console.SetCursorPosition(x1, y);
+        Console.WriteLine("+");
+        x1++;
+    }
+    numbers += 2;
+    x--;
+    y++;
+}
