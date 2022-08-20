@@ -63,7 +63,6 @@ Console.WriteLine($"Сумма элементов, стоящих на нечё�
 Задайте массив вещественных чисел. 
 Найдите разницу между максимальным и минимальным элементов массива.
 [3 7 22 2 78] -> 76
-*/
 
 double[] GetDoubleArray(int size, int start, int stop)
 {
@@ -98,3 +97,37 @@ double GetDiffMaxMin(double[] arr)
 double[] array = GetDoubleArray(10, 0, 50);
 Console.WriteLine("Массив: " +  string.Join(", ", array));
 Console.WriteLine($"Разница между максимальным и минимальным элементами массива: {GetDiffMaxMin(array)}");
+*/
+
+/*
+Задача "со звездочкой": Разобраться с алгоритмом сортировки методом пузырька. 
+Реализовать невозрастающую сторировку.
+[3, 0, 2, 4, -1] -> [4, 3, 2, 0, -1]
+[1,2,2,3,2] -> [3, 2, 2, 2, 1]
+*/
+
+int[] GetBubbleSortRev(int[] arr)
+{
+    int temp;
+    for (int i = 0; i < arr.Length; i++)
+    {
+        for (int j = i + 1; j < arr.Length; j++)
+        {
+             //Console.WriteLine(arr[i]);
+            if (arr[i] < arr[j])
+            {
+                temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+            //Console.WriteLine(string.Join(", ", arr));
+        }
+        //Console.WriteLine();
+        //Console.WriteLine(string.Join(", ", arr));
+    }
+    return arr;
+}
+
+int[] array = GetArray(10, -20, 50);
+Console.WriteLine($"Массив: {string.Join(", ", array)}");
+Console.WriteLine($"Невозрастающая сторировка элементов массива: {string.Join(", ", GetBubbleSortRev(array))}");
