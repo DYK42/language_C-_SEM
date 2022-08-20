@@ -39,7 +39,6 @@ Console.WriteLine($"Количество четных чисел в массив
 Найдите сумму элементов, стоящих на нечётных позициях.
 [3, 7, 23, 12] -> 19
 [-4, -6, 89, 6] -> 0
-*/
 
 int[] array = GetArray(11, -22, 30);
 
@@ -57,3 +56,45 @@ int GetSum(int[] arr)
 
 Console.WriteLine("Массив: " +  string.Join(", ", array));
 Console.WriteLine($"Сумма элементов, стоящих на нечётных позициях: {GetSum(array)}");
+*/
+
+/*
+Задача 38: 
+Задайте массив вещественных чисел. 
+Найдите разницу между максимальным и минимальным элементов массива.
+[3 7 22 2 78] -> 76
+*/
+
+double[] GetDoubleArray(int size, int start, int stop)
+{
+    double[] arr = new double [size];
+
+    for (int i = 0; i < size; i++)
+    {
+        arr[i] = Math.Round(new Random().Next(start, stop) + new Random().NextDouble(), 2);
+    }
+
+    return arr;
+}
+
+double GetDiffMaxMin(double[] arr)
+{
+    int size = arr.Length;
+    if(size < 1) return double.NaN;
+
+    double max = arr[0];
+    double min = arr[0];
+
+    for (int i = 1; i < size; i++)
+    {
+        if(max < arr[i]) max = arr[i];
+        if(min > arr[i]) min = arr[i];
+    }
+
+    Console.WriteLine($"Максимальный {max} и минимальный {min} элементы массива");
+    return max - min;
+}
+
+double[] array = GetDoubleArray(10, 0, 50);
+Console.WriteLine("Массив: " +  string.Join(", ", array));
+Console.WriteLine($"Разница между максимальным и минимальным элементами массива: {GetDiffMaxMin(array)}");
