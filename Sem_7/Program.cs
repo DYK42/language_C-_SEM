@@ -115,7 +115,7 @@ Console.Write($"Значение элемента : {(valueByIndex <= int.MinVal
 5 9 2 3
 8 4 2 4
 Среднее арифметическое каждого столбца: 4,6; 5,6; 3,6; 3.
-*/
+
 
 int[,] GetArray(int rows, int columns, int minValue, int maxValue)
 {
@@ -173,3 +173,56 @@ int[,] array = GetArray(rows, columns, 0, 10);
 PrintArray(array);
 double[] averageArray = GetAverageByColumns(array);
 Console.Write($"Среднее арифметическое по столбцам: {string.Join(", ", averageArray)}");
+*/
+
+/*
+Задача со звездочкой. 
+Написать программу для перевода римских чисел в десятичные арабские.
+III -> 3
+LVIII -> 58
+MCMXCIV -> 1994
+1000 100 1000 10 100 1 5
+*/
+
+int GetArabicNumber(string romanNumber)
+{
+    romanNumber = romanNumber.ToUpper();
+    int arabicNumber = 0;
+
+    switch(romanNumber)
+    {
+        case "I":   arabicNumber = 1;     break;
+        case "V":   arabicNumber = 5;     break;
+        case "X":   arabicNumber = 10;    break;
+        case "L":   arabicNumber = 50;    break;
+        case "C":   arabicNumber = 100;   break;
+        case "D":   arabicNumber = 500;   break;
+        case "M":   arabicNumber = 1000;  break;
+        default:    arabicNumber = 0;     break;
+    }
+
+    return arabicNumber;
+}
+
+int RomanToArabicNumber(string romanNumber)
+{
+    int result = 0;
+    int prevNumber = 0;
+
+    for (int i = romanNumber.Length - 1; i >= 0; i--)
+    {
+        int number = GetArabicNumber(romanNumber[i].ToString());
+
+        if(number <= 0) continue;
+
+        result += number < prevNumber ? -number : number;
+        prevNumber = number;
+    }
+
+    return result;
+}
+
+Console.Write("Введите римское число: ");
+string romanNumber = Console.ReadLine().ToUpper();
+int arabicNumber = RomanToArabicNumber(romanNumber);
+Console.Write($"Римское число {romanNumber} это арабское {arabicNumber}");
