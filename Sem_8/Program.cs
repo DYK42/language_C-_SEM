@@ -38,7 +38,7 @@ void PrintArray(int[,] array)
         Console.WriteLine();
     }
 }
-
+/*
 void SortRows(int[,] array)
 {
     int temp = 0;
@@ -65,3 +65,41 @@ PrintArray(array);
 Console.WriteLine();
 SortRows(array);
 PrintArray(array);
+*/
+
+/*
+Задача 56:
+Задайте прямоугольный двумерный массив. Напишите программу, которая будет находить строку с наименьшей суммой элементов.
+Например, задан массив:
+1 4 7 2
+5 9 2 3
+8 4 2 4
+5 2 6 7
+Программа считает сумму элементов в каждой строке и выдаёт номер строки с наименьшей суммой элементов: 1 строка
+*/
+
+int GetIndexRowMinSum(int[,] array)
+{
+    int minIndex = -1;
+    int minSum = 0;
+
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        int sum = 0;
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            sum += array[i, j];
+        }
+        if(minSum > sum || minSum <= 0)
+        {
+            minSum = sum;
+            minIndex = i;
+        }
+    }
+    return minIndex;
+}
+
+int[,] array = GetArray(5, 6, 0, 10);
+PrintArray(array);
+Console.WriteLine();
+Console.Write($"Индекс строки двумерного массива с наименьшей суммой элементов: {GetIndexRowMinSum(array)}");
