@@ -261,7 +261,7 @@ else
 12 13 14 05
 11 16 15 06
 10 09 08 07
-*/
+
 
 int[,] GetArraySpiralValue(int rows, int columns)
 {
@@ -320,9 +320,51 @@ int[,] GetArraySpiralValue(int rows, int columns)
 }
 
 Console.Write("Задайте размер массива по оси X: ");
-int x = int.Parse(Console.ReadLine());
+int xSize = int.Parse(Console.ReadLine());
 Console.Write("Задайте размер массива по оси Y: ");
-int y = int.Parse(Console.ReadLine());
+int ySize = int.Parse(Console.ReadLine());
 
-int[,] array = GetArraySpiralValue(x, y);
+int[,] array = GetArraySpiralValue(xSize, ySize);
 PrintArray(array);
+*/
+
+/*
+Задача со звездочкой:
+Написать функцию Sqrt(x) - квадратного корня, которая принимает на вход целочисленное значение x 
+и возвращает целую часть квадратного корня от введенного числа.
+4 -> 2
+28 -> 5
+Нельзя использовать встроенные функции библиотеки Math!
+*/
+/*
+double l = 0;
+double r = 1e100; //большое число
+double m;
+while (r - l > 1e-8){ //точность
+    m = l + (r - l)/2;
+    if (m*m > n) l = m;
+            else r = m; 
+}
+//ответ в l
+*/
+int GetSqrt(int number)
+{
+    int num = number / 2;
+    int count = 0;
+
+    if(num < 1) return (number <= 0 ? 0 : 1);
+    
+    while (num - number / num > 0)
+    {
+        count++;
+        num = (num + number / num) / 2;
+    }
+    Console.WriteLine($"{count}");
+    return num;
+}
+
+Console.Write("Введите целое число: ");
+int number = int.Parse(Console.ReadLine());
+if(number < 0) number *= -1;
+
+Console.Write($"Целая часть квадратного корня числа {number} равна: {GetSqrt(number)}");
