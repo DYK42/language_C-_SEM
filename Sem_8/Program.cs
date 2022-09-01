@@ -162,7 +162,7 @@ else
 34(1,0,0) 41(1,1,0)
 27(0,0,1) 90(0,1,1)
 26(1,0,1) 55(1,1,1)
-*/
+
 
 int[,,] Get3DArray(int x, int y, int z, int minValue, int maxValue)
 {
@@ -251,3 +251,78 @@ else
 {
     Console.Write("Размер трехмерного массива не позволяет заполнить его неповторяющимися двузначными числами!");
 }
+*/
+
+/*
+Задача 62. 
+Напишите программу, которая заполнит спирально массив 4 на 4.
+Например, на выходе получается вот такой массив:
+01 02 03 04
+12 13 14 05
+11 16 15 06
+10 09 08 07
+*/
+
+int[,] GetArraySpiralValue(int rows, int columns)
+{
+    int[,] array = new int[rows, columns];
+    int count = 1;
+    int countMax = rows * columns;
+    int direction = 0;
+    int start_rows = 0;
+    int start_columns = 0;
+
+    while (count <= countMax)
+    {
+        if (direction == 0)
+        {
+            for (int i = start_columns; i < columns; i++)
+            {
+                array[start_rows, i] = count++;
+            }
+            if(count > countMax) break;
+            start_rows++;
+            direction = 1;
+        }
+        if (direction == 1)
+        {
+            for (int i = start_rows; i < rows; i++)
+            {
+                array[i, columns - 1] = count++;
+            }
+            if(count > countMax) break;
+            columns--;
+            direction = 2;
+        }
+        if (direction == 2)
+        {
+            for (int i = columns - 1; i >= start_columns; i--)
+            {
+                array[rows - 1, i] = count++;
+            }
+            if(count > countMax) break;
+            rows--;
+            direction = 3;
+        }
+        if (direction == 3)
+        {
+            for (int i = rows - 1; i >= start_rows; i--)
+            {
+                array[i, start_columns] = count++;
+            }
+            if(count > countMax) break;
+            start_columns++;
+            direction = 0;
+        }
+    }
+    Console.WriteLine();
+    return array;
+}
+
+Console.Write("Задайте размер массива по оси X: ");
+int x = int.Parse(Console.ReadLine());
+Console.Write("Задайте размер массива по оси Y: ");
+int y = int.Parse(Console.ReadLine());
+
+int[,] array = GetArraySpiralValue(x, y);
+PrintArray(array);
