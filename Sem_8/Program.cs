@@ -116,7 +116,7 @@ Console.Write($"Индекс строки двумерного массива с
 18 20
 15 18
 если число столбцов первой матрицы совпадает с числом строк второй матрицы
-*/
+
 
 int[,] GetMultiMatrix(int[,] array1, int[,] array2)
 {
@@ -150,4 +150,104 @@ else
     PrintArray(array2);
     Console.WriteLine();
     PrintArray(array3);
+}
+*/
+
+/*
+Задача 60.
+Сформируйте трёхмерный массив из неповторяющихся двузначных чисел. 
+Напишите программу, которая будет построчно выводить массив, добавляя индексы каждого элемента.
+Массив размером 2 x 2 x 2
+66(0,0,0) 25(0,1,0)
+34(1,0,0) 41(1,1,0)
+27(0,0,1) 90(0,1,1)
+26(1,0,1) 55(1,1,1)
+*/
+
+int[,,] Get3DArray(int x, int y, int z, int minValue, int maxValue)
+{
+    int[,,] result = new int[x, y, z];
+    int[] temp = new int[x * y * z];
+    int count = 0;
+
+    for (int i = 0; i < result.GetLength(0); i++)
+    {
+        for (int j = 0; j < result.GetLength(1); j++)
+        {
+            for (int k = 0; k < result.GetLength(2); k++)
+            {
+                while(true)
+                {
+                    int random = new Random().Next(minValue, maxValue + 1);
+                    if(temp.Contains(random)) continue;
+                    result[i, j, k] = random;
+                    temp[count] = random;
+                    count++;
+                    break;
+                }
+            }
+        }
+    }
+
+    return result;
+}
+
+void Print3DArrayByRows(int[,,] array)
+{
+    int xSize = array.GetLength(0);
+    int ySize = array.GetLength(1);
+    int zSize = array.GetLength(2);
+    int xIndex = 0, yIndex = 0, zIndex = 0;
+
+    while(true)
+    {
+        if(xIndex >= xSize && yIndex >= ySize && zIndex >= zSize) break;
+        
+        Console.Write($"{array[xIndex, yIndex, zIndex]} ({xIndex}, {yIndex}, {zIndex}) ");
+        
+        if(yIndex < ySize - 1)
+        {
+            yIndex++;
+        }
+        else
+        {
+            if(xIndex < xSize - 1)
+            {
+                xIndex++;
+                yIndex = 0;
+                Console.WriteLine();
+            }
+            else
+            {
+                if(zIndex < zSize - 1)
+                {
+                    zIndex++;
+                    xIndex=0;
+                    yIndex=0;
+                    Console.WriteLine();
+                }
+                else
+                {
+                    break;
+                }
+            }
+        }
+    }
+}
+
+Console.Write("Задайте размер массива по оси X: ");
+int x = int.Parse(Console.ReadLine());
+Console.Write("Задайте размер массива по оси Y: ");
+int y = int.Parse(Console.ReadLine());
+Console.Write("Задайте размер массива по оси Z: ");
+int z = int.Parse(Console.ReadLine());
+
+if(x * y * z <= 100 - 10)
+{
+    int[,,] array = Get3DArray(x, y, z, 10, 99);
+    Print3DArrayByRows(array);
+}
+else
+{
+    Console.Write("Размер трехмерного массива не позволяет заполнить его неповторяющимися двузначными числами!");
 }
