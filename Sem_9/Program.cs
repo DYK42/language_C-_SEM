@@ -35,7 +35,7 @@ Console.Write($"Сумма элементов интервала от {numStart}
 Напишите программу вычисления функции Аккермана с помощью рекурсии. 
 Даны два неотрицательных числа m и n.
 m = 2, n = 3 -> A(m,n) = 29
-*/
+
 
 int GetAkkermanMethod(int m, int n)
 {
@@ -69,3 +69,69 @@ else
 {
     Console.Write($"Вычисление функции Аккермана ( где m = {m}; n = {n} ) равно: {value}");
 }
+*/
+
+/*
+Задача со звездочкой: 
+Пользователь вводит скобочные последовательности. В последовательности могут встретиться скобки вида: {}, (), [].
+Правильная скобочная последовательность - символьная последовательность, составленная в алфавите, состоящем из символов, 
+сгруппированных в упорядоченные пары.
+
+Пример правильной скобочной последовательности: (), ()[]{}
+Пример неправильной: (], ({)}
+Написать программу, которая определяет правильная ли скобочная последовательность была введена
+*/
+
+
+int CheckCharacterSequence(string seq, int i)
+{
+    int balance = 0;
+
+    if("({[".Contains(seq[i].ToString()))
+    {
+        switch (seq[i].ToString())
+        {
+            case "(":
+                balance++;
+                break;
+            case "{":
+                balance += 2;
+                break;
+            case "[":
+                balance += 3;
+                break;
+        }
+        //Console.WriteLine($"{i} >> {balance}");
+        return (i + 1 < seq.Length ? balance + CheckCharacterSequence(seq, i + 1) : balance);
+    }
+    if(")}]".Contains(seq[i].ToString()))
+    {
+        switch (seq[i].ToString())
+        {
+            case ")":
+                balance--;
+                break;
+            case "}":
+                balance -= 2;
+                break;
+            case "]":
+                balance -= 3;
+                break;
+        }
+        //Console.WriteLine($"{i} >> {balance}");
+        return (i + 1 < seq.Length ? balance + CheckCharacterSequence(seq, i + 1) : balance);
+    }
+    if(" ".Contains(seq[i].ToString()))
+    {
+        return (i + 1 < seq.Length ? balance + CheckCharacterSequence(seq, i + 1) : balance);
+    }
+    return balance;
+}
+
+Console.Write("Введите скобочную последовательность: ");
+string seq = Console.ReadLine();
+Console.WriteLine();
+int balance = CheckCharacterSequence(seq, 0);
+Console.WriteLine($"{balance}");
+Console.Write($"Была введена {(balance != 0 ? "НЕ" : "")}правильная скобочная последовательность.");
+
